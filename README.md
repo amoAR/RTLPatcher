@@ -36,7 +36,7 @@ so this project was created to support these languages in chat, but it became so
 
 - Editing the message may result in the message being shrunk. in this case, press Esc and try again.
 - Message contains a lot of English text, but it's shown as RTL. be careful that the encoding of first word determines the alignment of the whole message.
-- Align of my messages in chat is the same as the others. you definitely didn't enter the URL of your avatar _correctly_. Follow Step 6 of installation guide again
+- Align of my messages in chat is the same as the others. you definitely didn't enter the URL of your avatar _correctly_. Follow Step 6 of installation guide again.
 
 ## Screenshot
 
