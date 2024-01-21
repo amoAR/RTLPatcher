@@ -16,12 +16,12 @@ so this project was created to support these languages in chat, but it became so
 
 ## Quick Install
 
-1. Install BetterDiscord
-2. Download style files from [here](themes) and put them in:
+1. Install [BetterDiscord](https://betterdiscord.app)
+2. Download style files from [here](tree/main/Themes) and put them in:
 ```
 %APPDATA%\BetterDiscord\themes
 ```
-3. Download script files from [here](plugins) and put them in:
+3. Download script files from [here](tree/main/Plugins) and put them in:
 ```
 %APPDATA%\BetterDiscord\plugins
 ```
