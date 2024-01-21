@@ -6,22 +6,22 @@ so this project was created to support these languages in chat, but it became so
 
 ## Features
 
-- aligns message texts based on first word
-- aligns own messages to right of chat screen
-- places caption of attachments below instead of above
-- redesigns user area panel and upload bar
-- adds some css (i know this has nothing to do with the name of the project but discord default theme is ugly as fuck)
+- Aligns message texts based on first word
+- Aligns own messages to right of chat screen
+- Places caption of attachments below instead of above
+- Redesigns user area panel and upload bar
+- Adds some css (i know this has nothing to do with the name of the project but discord default theme is ugly as fuck)
 
 > As mentioned in the last part, about 900 lines of style have been added to bring Discord closer to standards of electron application. Since this wasn't goal of the project, some popular themes at BetterDiscord were used to save time
 
 ## Quick Install
 
 1. Install [BetterDiscord](https://betterdiscord.app)
-2. Download style files from [here](tree/main/Themes) and put them in:
+2. Download style files from [here](https://github.com/amoAR/RTLPatcher/tree/main/Themes) and put them in:
 ```
 %APPDATA%\BetterDiscord\themes
 ```
-3. Download script files from [here](tree/main/Plugins) and put them in:
+3. Download script files from [here](https://github.com/amoAR/RTLPatcher/tree/main/Plugins) and put them in:
 ```
 %APPDATA%\BetterDiscord\plugins
 ```
