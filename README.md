@@ -56,6 +56,6 @@ Here I mention some optional items that you can easily skip if you don't want to
 </p>
 
 ### Credits
-    - [Betterdiscord](https://betterdiscord.app)
-    - [CapnKitten](https://github.com/CapnKitten)
-    - [Mazeo](https://github.com/mazOnGitHub)
+- [Betterdiscord](https://betterdiscord.app)
+- [CapnKitten](https://github.com/CapnKitten)
+- [Mazeo](https://github.com/mazOnGitHub)
