@@ -1031,16 +1031,6 @@ module.exports = class ChatDesign {
          }
       }
 
-      // fix scroller function
-      let lastScrollerPos = 0
-      function fixScroller(scrollerElement) {
-         if (scrollerElement.scrollTop - lastScrollerPos > 20000 || lastScrollerPos - scrollerElement.scrollTop > 20000) {
-            scrollerElement.scrollTo(0, Math.floor(lastScrollerPos));
-         } else {
-            lastScrollerPos = scrollerElement.scrollTop;
-         }
-      }
-
       // escape edit mode function
       let editModeStyleInjected = false;
 
@@ -1080,7 +1070,7 @@ module.exports = class ChatDesign {
             history.scrollRestoration = 'manual';
          }
          
-         const myAvatarUrl = 'https://cdn.discordapp.com/avatars/{user.id}/{avatar.name}.{avatar.format}?size={avatar.size}';
+         const myAvatarUrl = 'https://cdn.discordapp.com/avatars/568288962943385612/38398924cbd3bfa15981c73f3297519b.webp?size=96';
          
          setInterval(function () { //set the code to repeat without pausing discord itself
             const fileAttachMessages = [...document.querySelectorAll('.container_dbadf5 a.downloadWrapper-1Cy2Fi')];
@@ -1094,11 +1084,7 @@ module.exports = class ChatDesign {
             const imageAttachMessages = [...document.querySelectorAll('.wrapper__09ecc .imageWrapper_fd6587')];
             const editedMessages       = [...document.querySelectorAll('.markup_a7e664 time[aria-label^="Edited "]')];
             const spoilerAttachMessages = [...document.querySelectorAll('.wrapper__09ecc .spoiler_b634f3 .imageWrapper_fd6587')];
-            const embedAttachmentsMessages = [...document.querySelectorAll('.markup_a7e664 a[href^="https://cdn.discordapp.com/attachments/"], .markup_a7e664 a[href^="https://media.discordapp.net/attachments/"]')];
-            
-            const scroller = document.getElementsByClassName('scroller__1f96e')[0];
-            
-
+            const embedAttachmentsMessages = [...document.querySelectorAll('.markup_a7e664 a[href^="https://cdn.discordapp.com/attachments/"], .markup_a7e664 a[href^="https://media.discordapp.net/attachments/"]')];            
 
             //================================= imageAttachment ================================
    
@@ -1181,7 +1167,7 @@ module.exports = class ChatDesign {
                            embedContainer.classList.add('customContainer');
                            const coverHeight = embedContainer.querySelector('video').clientHeight;
                            cover.setAttribute('style', 'transform: translateY(-' + (captionHeight - 10) + 'px)');
-                           caption.setAttribute('style', 'transform: translateY(' + (coverHeight + 10) + 'px)');
+                           caption.setAttribute('style', 'transform: translateY(' + (coverHeight + 40) + 'px)');
                            caption.style.textAlign = 'center';
                         }
                   }
@@ -1248,9 +1234,6 @@ module.exports = class ChatDesign {
                         message.classList.add('myMessage');
                      }
                   }
-               }
-               if (getComputedStyle(reply).getPropertyValue('background-color') !== 'rgba(148, 156, 247, 0)') {
-                  fixScroller(scroller);
                }
             });
 

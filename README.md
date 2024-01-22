@@ -1,8 +1,8 @@
 # RTLPatcher for Discord
 
-Own messages stay aligned to one side and Other on other side.!\
-In this way, it's much easier to recognize your messages from others... but Discord still doesn't even support RTL languages,
-so this project was created to support these languages in chat, but it became something more.
+Own messages stay aligned to one side and Other on other side!\
+In this way, it's much easier to recognize your messages from others...
+But Discord still doesn't even support RTL languages, so this project was created to support these languages in chat, but it became something more.
 
 ## Features
 
