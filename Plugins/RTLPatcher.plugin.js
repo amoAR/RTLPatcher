@@ -1,7 +1,7 @@
 /**
  * @name RTLPatcher
  * @author amoAR
- * @description Customize chat design just like Telegram! (Auto-Updating)
+ * @description Customize chat design just like Telegram!
  * @version 5.2.8
 */
 
