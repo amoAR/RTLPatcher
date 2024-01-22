@@ -27,7 +27,7 @@ But Discord still doesn't even support RTL languages, so this project was create
 ```
 4. Open Discord and go to settings > BETTERDISCORD section
 5. Themes > _Enable_ Material-Discord, Materyal-You, MicaCold _`in order`_
-6. Plugins > _Edit_ RTLPathcer > search for `const myAvatarUrl =` and replace URL of that line with your avatar URL then save and finally _Enable_ it
+6. Plugins > _Enable_ RTLPatcher > go to RTLPatcher settings > put your avatar URL > finally restart Discord
 
 > You can find your unique avatar URL by pressing `ctrl + shift + i` in chat page and clicking on your avatar. Do this in Discord application, not on the browser. The result should be like this:
 > <p>https://cdn.discordapp.com/avatars/{user.id}/{avatar.name}.{avatar.format}?size={avatar.size}</p>
