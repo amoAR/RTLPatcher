@@ -3,7 +3,12 @@
  * @author amoAR
  * @description Customize chat design just like Telegram!
  * @version 5.2.8
+ * @authorLink https://github.com/amoAR
+ * @source https://github.com/amoAR/RTLPatcher
+ * @updateUrl https://raw.githubusercontent.com/amoAR/RTLPatcher/main/Plugins/RTLPatcher.plugin.js
 */
+
+//* ⚠ There is no stop function. If any changes are made, it's best to restart Discord ⚠
 
 let mySettings = {}
 module.exports = class ChatDesign {
@@ -16,7 +21,8 @@ module.exports = class ChatDesign {
          }
       } catch {
          mySettings = {
-            myAvatarUrl: ""
+            myAvatarUrl: "",
+            steamHappy: false
          };
          BdApi.Data.save("RTLPatcher", "settings", mySettings);
       } finally {
@@ -48,12 +54,6 @@ module.exports = class ChatDesign {
             .theme-dark {
                --saturation-modifier: 0.175;
                --lightness-modifier: 0.2;
-
-               /* Material-Discord => Src: https://github.com/mazOnGitHub/discord-mica */
-               --background-primary: url(https://cdn.discordapp.com/attachments/1129429790869426208/1136662259628789801/9lIPnSc.png);
-               --background-secondary: var(--background-primary);
-               --background-tertiary: url(https://cdn.discordapp.com/attachments/1129429790869426208/1136662260559904888/l2F9fCH.png);
-               --background-secondary-alt: var(--background-tertiary);
             }
 
             .buttonContainer__9b459 .sendIcon__461ff path {
@@ -276,7 +276,7 @@ module.exports = class ChatDesign {
                overflow: hidden !important;
             }
          
-         .limitedTimeBadge-JvRtll, .textBadge__45d79 {
+            .limitedTimeBadge-JvRtll, .textBadge__45d79 {
                display: none !important;
             }
 
@@ -860,6 +860,33 @@ module.exports = class ChatDesign {
             .inner__9fd0b textarea:not(.form__13a2c textarea) {
                height: revert !important;
             }
+
+            #mySettings, #mySettings .settings {
+               display: flex;
+               flex-direction: column;
+               max-width: 90%;
+            }
+
+            .mySettingsLable {
+               display: block;
+               font-size: 1rem;
+               font-weight: 500;
+               color: var(--header-primary);
+            }
+
+            #mySettings .mySettingsLable:not(:first-child) {
+               margin-top: 1.5rem;
+            }
+
+            .mySettingsInput {
+               border: none;
+               border-radius: 5px;
+               color: #f5f5f5;
+               width: 100%;
+               background-color: var(--message-color);
+               user-select: text;
+               margin-top: 0.5rem;
+            }
          `;
 
          // define insider css classes
@@ -989,8 +1016,12 @@ module.exports = class ChatDesign {
                   message.classList.add('customAlign');
                }
 
-               if (message.parentElement.getAttribute('aria-labelledby').match('message-username-Uploader') !== null) {
-                  message.classList.add('myUpload');
+               try{
+                  if (message.parentElement.getAttribute('aria-labelledby').match('message-username-Uploader') !== null) {
+                     message.classList.add('myUpload');
+                  }
+               } catch {
+                  return;
                }
 
                if (message.querySelector('div:last-child .inner__9fd0b') !== null) {
@@ -1098,7 +1129,8 @@ module.exports = class ChatDesign {
                const imageAttachMessages = [...document.querySelectorAll('.wrapper__09ecc .imageWrapper_fd6587')];
                const editedMessages       = [...document.querySelectorAll('.markup_a7e664 time[aria-label^="Edited "]')];
                const spoilerAttachMessages = [...document.querySelectorAll('.wrapper__09ecc .spoiler_b634f3 .imageWrapper_fd6587')];
-               const embedAttachmentsMessages = [...document.querySelectorAll('.markup_a7e664 a[href^="https://cdn.discordapp.com/attachments/"], .markup_a7e664 a[href^="https://media.discordapp.net/attachments/"]')];            
+               const full_moon_with_faces = [...document.querySelectorAll('img[src="/assets/11b25a40798c2ab06f47.svg"], img[alt=":full_moon_with_face:"], button[data-name="full_moon_with_face"]')];
+               // const embedAttachmentsMessages = [...document.querySelectorAll('.markup_a7e664 a[href^="https://cdn.discordapp.com/attachments/"], .markup_a7e664 a[href^="https://media.discordapp.net/attachments/"]')];            
 
                //================================= imageAttachment ================================
       
@@ -1372,8 +1404,11 @@ module.exports = class ChatDesign {
                      if (!editModeStyleInjected) {
                         const editModeText = editModeTexts[0];
                         const inputContainer = editModeText.parentElement.parentElement.parentElement;
+                        if(inputContainer.className === "form__13a2c") {
+                           return;
+                        }
                         inputContainer.style.cssText = `
-                           width: 400px; 
+                           width: 400px;
                            padding-bottom: 10px;
                         `;
                         editModeText.style.minHeight = '180px';
@@ -1399,6 +1434,29 @@ module.exports = class ChatDesign {
                   }
                });
 
+               //================================= addSteamHappy ==================================
+
+               if (mySettings.steamHappy){
+                  full_moon_with_faces.forEach(emoji => {
+                     if (!emoji.classList.contains('customSteamHappy')) {
+                        emoji.classList.add('customSteamHappy');
+                        if (emoji.tagName === 'BUTTON'){
+                           emoji.style.cssText = `
+                              background-image: url(https://cdn.discordapp.com/emojis/1174388409012338840.webp?size=64&quality=lossless) !important;
+                              background-position: center !important;
+                              background-size: cover !important;
+                           `;
+                           emoji.querySelector('.emojiSpriteImage__6363e').style.cssText = `
+                              background-image: none !important;
+                              background-position: center !important;
+                              background-size: cover !important;
+                           `;
+                        } else {
+                           emoji.src = 'https://cdn.discordapp.com/emojis/1174388409012338840.webp';
+                        }
+                     }
+                  })
+               }
             }, 500);
          }
       }
@@ -1413,24 +1471,34 @@ module.exports = class ChatDesign {
       const buttonTextSetting = document.createElement("div");
       buttonTextSetting.classList.add("setting");
 
-      const buttonTextLabel = document.createElement("span")
-      buttonTextLabel.textContent = "Your avatar URL: ";
-      buttonTextLabel.className = "username_d30d99";
+      // avatarUrl
+      const avatarLabel = document.createElement("span")
+      avatarLabel.textContent = "Your avatar URL:";
+      avatarLabel.className = "mySettingsLable";
 
-      const buttonTextInput = document.createElement("input");
-      buttonTextInput.type = "text";
-      buttonTextInput.name = "buttonText";
-      buttonTextInput.value = mySettings.myAvatarUrl;
-      buttonTextInput.className = "inner__9fd0b wrapper__09ecc channelTextArea__56a36 scrollableContainer__33e06";
-      buttonTextInput.style.border = "none";
-      buttonTextInput.style.color = "#f5f5f5";
-      buttonTextInput.selectionStart = buttonTextInput.selectionStart = 0;
+      const avatarInput = document.createElement("input");
+      avatarInput.type = "text";
+      avatarInput.name = "avatarUrl";
+      avatarInput.className = "mySettingsInput";
+      avatarInput.value = mySettings.myAvatarUrl;
+      avatarInput.selectionStart = avatarInput.selectionStart = 0;
 
-      buttonTextSetting.append(buttonTextLabel, buttonTextInput);
+      // SteamHappy
+      const steamHappyLabel = document.createElement("span");
+      steamHappyLabel.textContent = "Enable Steamhappy emoji:";
+      steamHappyLabel.className = "mySettingsLable";
+
+      const steamHappyInput = document.createElement("input");
+      steamHappyInput.type = "checkbox";
+      steamHappyInput.name = "steamhappy";
+      steamHappyInput.className = "mySettingsInput";
+      steamHappyInput.checked = mySettings.steamHappy;
+
+      buttonTextSetting.append(avatarLabel, avatarInput, steamHappyLabel, steamHappyInput);
       panel.append(buttonTextSetting);
       
-      buttonTextInput.addEventListener("change", () => {
-         mySettings.myAvatarUrl = buttonTextInput.value;
+      avatarInput.addEventListener("change", () => {
+         mySettings.myAvatarUrl = avatarInput.value;
          if(mySettings.hasOwnProperty("myAvatarUrl") && (mySettings.myAvatarUrl.startsWith("https://cdn.discordapp.com/avatars/") || mySettings.myAvatarUrl.startsWith("https://media.discordapp.net/avatars/"))) {
             mySettings = {
                myAvatarUrl: mySettings.myAvatarUrl
@@ -1438,6 +1506,15 @@ module.exports = class ChatDesign {
             BdApi.Data.save("RTLPatcher", "settings", mySettings);
             BdApi.UI.showToast("RTLPatcher: Restart is required for changes to take effect!");
          }
+      });
+
+      steamHappyInput.addEventListener("change", () => {
+         mySettings.steamHappy = steamHappyInput.checked;
+         mySettings = {
+            myAvatarUrl: mySettings.myAvatarUrl,
+            steamHappy: mySettings.steamHappy
+         };
+         BdApi.Data.save("RTLPatcher", "settings", mySettings);
       });
       return panel;
    }

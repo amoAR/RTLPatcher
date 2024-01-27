@@ -10,11 +10,17 @@ But Discord still doesn't even support RTL languages, so this project was create
 - Aligns own messages to right of chat screen
 - Places caption of attachments below instead of above
 - Redesigns user area panel and upload bar
+- Restore your last DM
 - Adds some css (i know this has nothing to do with the name of the project but discord default theme is ugly as fuck)
+- Replaces :full_moon_with_face: emoji with :steamhappy: (can be enabled through plugin settings)
 
 > As mentioned in the last part, about 900 lines of style have been added to bring Discord closer to standards of electron application. Since this wasn't goal of the project, some popular themes at BetterDiscord were used to save time.
 
 ## Quick Install
+1. Install [BetterDiscord](https://betterdiscord.app)
+2. Download & Run [This](https://raw.githubusercontent.com/amoAR/RTLPatcher/main/RTLPatcher.ps1)
+
+## Manual Install
 
 1. Install [BetterDiscord](https://betterdiscord.app)
 2. Download style files from [here](https://github.com/amoAR/RTLPatcher/tree/main/Themes) and put them in:
@@ -27,10 +33,10 @@ But Discord still doesn't even support RTL languages, so this project was create
 ```
 4. Open Discord and go to settings > BETTERDISCORD section
 5. Themes > _Enable_ Material-Discord, Materyal-You, MicaCold _`in order`_
-6. Plugins > _Enable_ RTLPatcher > go to RTLPatcher settings > put your avatar URL > finally restart Discord
+6. Plugins > _Enable_ RTLPatcher > go to RTLPatcher settings (⚙) > put your avatar URL > finally restart Discord
 
 > You can find your unique avatar URL by pressing `ctrl + shift + i` in chat page and clicking on your avatar. Do this in Discord application, not on the browser. The result should be like this:
-> <p>https://cdn.discordapp.com/avatars/{user.id}/{avatar.name}.{avatar.format}?size={avatar.size}</p>
+> <p style="color: #f5f5f5">https://cdn.discordapp.com/avatars/{user.id}/{avatar.name}.{avatar.format}?size={avatar.size}</p>
 
 ## Be More-Stylish
 
