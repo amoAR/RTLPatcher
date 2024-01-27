@@ -18,7 +18,7 @@ But Discord still doesn't even support RTL languages, so this project was create
 
 ## Quick Install
 1. Install [BetterDiscord](https://betterdiscord.app)
-2. Download & Run [This](https://raw.githubusercontent.com/amoAR/RTLPatcher/main/RTLPatcher.ps1)
+2. Download & Run [This](https://github.com/amoAR/RTLPatcher/blob/main/RTLPatcher.ps1)
 
 ## Manual Install
 
