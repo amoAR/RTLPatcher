@@ -12,9 +12,9 @@ background: var(--background-tertiary);
 }
 
 .theme-dark {
-    --background-primary: url(https://cdn.discordapp.com/attachments/1129429790869426208/1136662259628789801/9lIPnSc.png);
+    --background-primary: url(https://i.imgur.com/l2F9fCH.png);
     --background-secondary: var(--background-primary);
-    --background-tertiary: url(https://cdn.discordapp.com/attachments/1129429790869426208/1136662260559904888/l2F9fCH.png);
+    --background-tertiary: url(https://i.imgur.com/l2F9fCH.png);
     --background-secondary-alt: var(--background-tertiary);
 
     --channeltextarea-background: #222223;

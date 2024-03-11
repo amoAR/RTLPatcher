@@ -2,7 +2,7 @@
  * @name RTLPatcher
  * @author amoAR
  * @description Customize chat design just like Telegram!
- * @version 5.2.8
+ * @version 5.2.9
  * @authorLink https://github.com/amoAR
  * @source https://github.com/amoAR/RTLPatcher
  * @updateUrl https://raw.githubusercontent.com/amoAR/RTLPatcher/main/Plugins/RTLPatcher.plugin.js
@@ -45,7 +45,7 @@ module.exports = class ChatDesign {
                --sidebar-panel-color: var(--bg-overlay-1,var(--background-secondary-alt)) !important;
                --attachment-color: var(--card-color-filled) !important;
                --menu-item-hover: rgba(31, 37, 39, .75) !important;
-               --main-color: url(https://cdn.discordapp.com/attachments/1129429790869426208/1136662260211781672/fdj46dP.png) !important;
+               --main-color: url(https://i.imgur.com/fdj46dP.png) !important;
                --status-picker-color: var(--bg-overlay-1,var(--background-secondary-alt)) !important;
                --popout-color: rgb(31, 37, 39) !important;
                --shadow-3dp: none !important;
@@ -169,7 +169,7 @@ module.exports = class ChatDesign {
 
             .menu_dc52c6 {
                background-color: transparent !important;
-               background: url(https://cdn.discordapp.com/attachments/1129429790869426208/1136662260211781672/fdj46dP.png) !important;
+               background: url(https://i.imgur.com/fdj46dP.png) !important;
                background-position: revert !important;
                opacity: .99 !important;
                box-shadow: none !important;
@@ -216,13 +216,13 @@ module.exports = class ChatDesign {
             }
 
             .bg__12180, .container__4bde3 {
-               background: url(https://cdn.discordapp.com/attachments/1129429790869426208/1136662259628789801/9lIPnSc.png) !important;
+               background: url(https://i.imgur.com/l2F9fCH.png) !important;
                background-position: bottom right !important;
                filter: contrast(85%) !important;
             }
 
             .userPanelInnerThemed__1804b {
-               background: url(https://cdn.discordapp.com/attachments/1129429790869426208/1136662259628789801/9lIPnSc.png) !important;
+               background: url(https://i.imgur.com/l2F9fCH.png) !important;
                background-position: bottom !important;
                filter: contrast(85%) !important;
             }
