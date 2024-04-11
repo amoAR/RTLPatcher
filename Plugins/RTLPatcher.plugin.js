@@ -33,12 +33,15 @@ module.exports = class ChatDesign {
 
             :root {
                --input-color: rgba(255, 255, 255, 0.067) !important;
+               --input-color-alt: rgba(255, 255, 255, 0.067) !important;
                --accent-text-color--material-you: var(--message-color);
                --message-color: rgba(255, 255, 255, 0.067) !important;
                --message-color-hover: rgba(255, 255, 255, 0.067) !important;
                --card-color-filled: rgba(33, 29, 44, .3) !important;
                --input-color-alt: rgba(33, 29, 44, .3) !important;
                --profile-body-background-color: rgba(30, 29, 50, .4) !important;
+               --profile-gradient-primary-color: hsla(150, 75%, 45%, 2%) !important;
+               --profile-gradient-secondary-color: hsla(150, 75%, 45%, 25%) !important;
                --typing-color: transparent !important;
                --primary-700: transparent !important;
                --activity-card-color: var(--card-color-filled) !important;
@@ -49,6 +52,8 @@ module.exports = class ChatDesign {
                --status-picker-color: var(--bg-overlay-1,var(--background-secondary-alt)) !important;
                --popout-color: rgb(31, 37, 39) !important;
                --shadow-3dp: none !important;
+               --menu-item-select: hsla(150, 75%, 45%, 30%) !important;
+               --card-color-active: hsla(150, 75%, 45%, 30%) !important;
             }
 
             .theme-dark {
@@ -56,44 +61,95 @@ module.exports = class ChatDesign {
                --lightness-modifier: 0.2;
             }
 
-            .buttonContainer__9b459 .sendIcon__461ff path {
+            div[class^='nowPlayingColumn_' i] div[class^='itemCard_' i] {
+               background: rgba(53, 55, 64, .3) !important;
+            }
+
+            div[class^='nowPlayingColumn_' i] div[class^='itemCard_' i] section[class^='section_' i] {
+               background: hsla(150, 75%, 45%, 3%) !important;
+            }
+
+            section[class*='container_' i]:not([role="dialog"]) {
+               background: var(--bg-overlay-1,var(--background-secondary-alt)) !important;
+            }
+
+            div[class^="menu__" i][role="menu"], div[class^='submenu_' i][role='menu'], #message-actions {
+               background-color: transparent !important;
+               background: url(https://i.imgur.com/fdj46dP.png) !important;
+               background-position: revert !important;
+               opacity: .99 !important;
+               box-shadow: none !important;
+            }
+
+            main[class^="chatContent_" i] + div[class^="container_" i] {
+               width: 22%;
+            }
+
+            div[class^="channelInfo" i] span[class^="total_" i]:after {
+               content: "|" !important;
+               border: none !important;
+               left: -6px !important;
+            }
+
+            div[class*='bottomControls_' i][class*='controlSection_' i] {
+               bottom: 0;
+               display: block;
+               position: absolute;
+            }
+
+            div[class*='bottomControls_' i][class*='controlSection_' i] > div:first-child {
+               position: absolute;
+               left: 5%;
+            }
+
+            [class^="buttonContainer_" i] [class^="sendIcon_" i] path {
                transform: scale(1.0) !important;
             }
 
-            .innerButton_debeee {
+            [class^="innerButton_" i] {
                margin-right: 0 !important;
             }
 
-            .profilePanel__12596 {
+            aside[class^='profilePanel_' i] {
                width: 300px !important;
             }
 
-            .container_b2ce9c, .membersListNotices_a4cb13, .membersWrap__90226, .hiddenVisually__06c3e, .members__9f47b, .content__23cab {
+            div[class^='nowPlayingColumn_' i], div[class^='nowPlayingColumn_' i] > aside, div[aria-label="Members" i], [class^='membersListNotices_' i], aside[class^='membersWrap_' i], span[class^='hiddenVisually_' i], div[class^='members_' i] {
                border-top-left-radius: 35px !important;
             }
 
-            .badgeList_ef4131, .profileBadges__7a7cb {
+            div[class^="badgesContainer_" i] > div:first-child {
+               background: var(--brand-experiment);
+               color: var(--white-500);
+            }
+
+            [class^='badgeList_' i], img[class^='profileBadge_' i] {
                background-color: transparent !important;
             }
 
-            .container_b2ce9c {
+            div[aria-label="Members" i] {
                background: linear-gradient(to bottom, rgba(33, 29, 44, .3), rgba(255, 255, 255, 0.067)) !important;
             }
 
-            .members__9f47b, .members__9f47b > div {
-               border-top-left-radius: 25px important;
+            div[class^="members__" i], div[class^="members__" i] > div {
+               border-top-left-radius: 25px !important;
                background: transparent !important;
             }
 
-            .theme-dark .wrapper__3a7a0 {
+            .theme-dark div[class^='containerTop_' i] + div[class^='wrapper_' i] {
                background-color: transparent;
             }
 
-            .noiseCancellationPopout__06ec4, .container__0810b, .container__56cd1 {
+            .customAlign + div[class^='container_' i]>* {
+               align-self: center !important;
+               justify-self: center !important;
+            }
+
+            [class^='noiseCancellationPopout_' i], [class^='noiseCancellationPopout_' i] > [class^='container_' i], div[class^='streamPreview_' i] {
                background-color: rgb(31, 37, 39) !important;
             }
 
-            .container_6sXIoE, .container_d667ff, .activityPanel__22355, .listeningAlong_f20fb2 {
+            .container_6sXIoE, .container_d667ff, [class^='activityPanel_' i], [class^='listeningAlong_' i] {
                background: var(--bg-overlay-1,var(--background-secondary-alt)) !important;
             }
 
@@ -105,220 +161,137 @@ module.exports = class ChatDesign {
                font-size: small !important;
             }
 
-            .actionButtons_b58cbb {
+            div[class^='actionButtons_' i] {
                padding-top: 0 !important;
                background-color: rgba(255, 255, 255, 0.05) !important;
                border-radius: 14px !important;
             }
 
-            .button__66e8c .buttonColor_a6eb73, .button__66e8c.buttonColor_a6eb73 {
-               button-background: transparent !important;
+            div[class^='actionButtons_' i] button[class^='button_' i], div[class^='actionButtons_' i] button[class^='buttonColor_' i] {
+               background-color: transparent !important;
                color: #2dc770 !important;
             }
 
-            .divider__8cf56.isUnread__6f880.hasContent__8519e .content_d67847 {
+            div[class^='actionButtons_' i] button[class^='button_' i]:nth-child(2) svg {
+               width: 19px !important;
+               margin-left: 2px;
+            }
+
+            li[id^="chat-messages-" i][class^="messageListItem_" i] + div[role="separator"] > span:first-child {
                color: var(--text-muted) !important;
                filter: brightness(1.1) !important;
             }
 
-            .markup_a7e664 a {
+            div[class^="markup_" i] a {
                text-decoration: none;
             }
 
-            .hljs, .nowPlayingColumn-1eCBCN {
+            .hljs, div[class^='nowPlayingColumn_' i] {
                background: transparent !important;
             }
 
-            .imageContainer__04362 {
+            div[class^="imageContainer_" i] {
                justify-content: center !important;
             }
 
-            .embedAuthor_cb4bfc, .embedDescription__33443, .embedFields__51397, .embedFooter_a8f9aa, .embedMedia_b473d2, .embedProvider_cfa718, .embedTitle__31740 {
+            [class^='embedAuthor_' i], [class^='embedDescription_' i], [class^='embedFields_' i], [class^='embedFooter_' i], [class^='embedMedia_' i], [class^='embedProvider_' i], [class^='embedTitle_' i] {
                text-align: center !important;
                justify-content: center !important;
             }
 
-            .input-3O04eu {
-               border-radius: var(--button-radius);
-               padding: 0 12px !important;
-            }
-
-            .container__0a6a9 {
+            main + div[class^='container_' i] {
                background: repeating-linear-gradient(-35deg, #222a30, transparent 100px) !important;
                background-color: #202c3536 !important;
                backdrop-filter: saturate(0.5) !important;
                border-radius: 20px !important;
             }
 
-            .timeLogModal_9s4Rts .emptyPlaceholder__688fc {
+            [class^='timeLogModal_' i], [class^='emptyPlaceholder_' i] {
                width: 101%;
             }
 
-            .flexChild__6e093 {
+            [class^='flexChild__' i] {
                flex: 1 1 10% !important;
             }
 
-            .container-2oNtJn {
-               width: 40%;
-               margin-right: 40px;
-            }
-
-            .root-1CAIjD .header-1ffhsl .close-A4ZfTI, .root-1CAIjD .header-1ffhsl .iconButton-2rHy7x {
-               top: 27px;
-            }
-
-            .menu_dc52c6 {
-               background-color: transparent !important;
-               background: url(https://i.imgur.com/fdj46dP.png) !important;
-               background-position: revert !important;
-               opacity: .99 !important;
-               box-shadow: none !important;
-            }
-
-            .wrapper__09ecc .channelTextArea__2e60f .scrollableContainer__33e06 {
+            form > div[class^='channelTextArea' i] > div[class^='scrollableContainer_' i] {
                background-color: rgba(33, 29, 44, .25) !important;
+               margin: 0 0 21px 0 !important;
             }
 
-            .recentsIcon__3c4cf, a[href="https://support.discord.com"], .clickable_d23a1a[aria-label="Start Voice Call"], .clickable_d23a1a[aria-label="Start Video Call"], .clickable_d23a1a[aria-label="Add Friends to DM"] {
+            div[class^='toolbar_' i] [class^='recentsIcon_' i], a[href="https://support.discord.com"], .clickable_d23a1a[aria-label="Start Voice Call"], .clickable_d23a1a[aria-label="Start Video Call"], .clickable_d23a1a[aria-label="Add Friends to DM"], div[class^='videoControls_' i] + div > button[aria-label="Show Chat"] {
                display: none;
             }
 
-            #bd-editor-controls {
-               border-radius: 0 !important;
+            div[class^='appAsidePanelWrapper_' i] div[class^='sidebar_' i] {
+               padding: 20px 10px 9px 10px !important;
             }
 
-            .monaco-editor .minimap {
-               right: 2px !important;
-            }
-
-            .bd-button, .lookFilled-1H2Jvj, .lookOutlined-3RTC7c, .lookLink-13iF2K, .lookInverted-2GrLaB, .operations-3q3u6E > a {
-               filter: sepia(1) !important;
-            }
-
-            .phoneFieldPopout-uW3DlO {
-               overflow: hidden !important;
-            }
-
-            .bd-addon-list.bd-grid-view {
-               grid-template-columns: 50% 50% !important;
-            }
-
-            #app-mount .layers__1c917 ~ .layers__1c917 {
-               box-shadow: none !important !important;
-            }
-
-            .bd-addon-views .bd-view-button.selected svg {
-               padding-right: 1px !important;
-            }
-
-            #app-mount .layers__1c917 ~ .layers__1c917 .sidebar_ded4b5 {
-               padding: 20px 6px 20px 10px !important;
-            }
-
-            .bg__12180, .container__4bde3 {
+            div[class^='appAsidePanelWrapper_' i] div[class^='bg__' i] {
                background: url(https://i.imgur.com/l2F9fCH.png) !important;
                background-position: bottom right !important;
                filter: contrast(85%) !important;
             }
 
-            .userPanelInnerThemed__1804b {
-               background: url(https://i.imgur.com/l2F9fCH.png) !important;
-               background-position: bottom !important;
-               filter: contrast(85%) !important;
+            div[class*='userPanelInner_' i] > div[class*='scrollerBase_' i] {
+               overflow: unset !important;
             }
 
-            .overlayBackground__86b78 {
+            aside > div[class*='userProfileOuterUnthemed_' i] > div[class*='userPanelInnerThemed_' i] {
+               background: transparent !important;
+               background-image: linear-gradient(
+                  135deg,
+                  hsla(150, 75%, 45%, 2%),
+                  hsla(150, 75%, 45%, 25%)
+               ) !important;
+               background-size: 100% !important;
+            }
+
+            textarea[aria-label="Note"] {
+               background: transparent;
+               border: 1px solid #f1f1f1;
+               height: 40px !important;
+               line-height: 1.5;
+               text-align: center !important;
+            }
+
+            textarea[aria-label="Note"]:hover {
+               border: 1px solid #ffffff;
+               filter: brightness(150%);
+            }
+
+            div[class^='overlayBackground_' i], div[class^='userPanelOverlayBackground_' i] {
                background: rgba(30, 29, 50, .4) !important;
             }
-
-            .container_ca50b9 {
-               background: var(--bg-overlay-1,var(--background-secondary-alt)) !important;
-            }
-
-            .container__11d72.themed_b152d4 {
-               background: var(--bg-overlay-2,var(--__header-bar-background)) !important;
-            }
-
-            .sidebar_ded4b5 .channel_c21703 {
-               margin-left: 8px;
-               border-radius: var(--channel-radius) !important;
-            }
-
-            .channel_c21703 .interactive__776ee:has(.selected-26oxtA) {
-               padding-left: 0 !important;
-            }
-
-            .sidebar_ded4b5 .channel_c21703:hover {
-               background: #1d2733 !important;
-            }
-
-            .children__32014:after {
-               visibility: hidden !important;
-            }
          
-            .sidebar_ded4b5, .sidebar_ded4b5 .container-1NXEtd {
+            div[class^='base_' i] div[class^='sidebar_' i] {
                border-right: 2px solid rgba(255, 255, 255, .05) !important;
             }
 
-            .sidebarRegionScroller-FXiQOh {
-               border-right: 1px solid rgba(255, 255, 255, .1) !important;
-            }
-
-            .sidebar_ded4b5 .separator__3f416 {
-               margin: 10px -15px 10px 28px !important;
-            }
-
-            .eyebrow__60985, .heading-deprecated-12-normal-2QSQ4R {
-               line-height: 18.5px !important;
-            }
-
-            .headerText_f47574 {
+            div[class^='headerText_' i] {
                overflow: hidden !important;
             }
          
-            .limitedTimeBadge-JvRtll, .textBadge__45d79 {
+            [class^='limitedTimeBadge' i], [class^='textBadge_' i] {
                display: none !important;
             }
 
-            .bd-description {
-               overflow: hidden !important;
-            }
-
-            .bd-addon-header {
-               border: none;
-               background: transparent!important;
-            }
-
-            .bd-addon-card {
-               background: var(--card-color-filled) !important;
-            }
-
-            .contentRegion-3HkfJJ {
-               border-radius: 0;
-            }
-
-            .scrollerInner__059a5 {
+            [class^='scrollerInner_' i] {
                overflow: visible !important;
             }
 
-            .form__13a2c {
-               margin-top: 1rem !important;
-               background-color: transparent !important;
-               background: transparent !important;
-            }
-
-            .typing__6fd1d {
+            [class^='typing__' i] {
                width: calc(100% - var(--scrollbar-width) * 2) !important;
                margin-left: var(--scrollbar-width) !important;
             }
 
-            .mediaAttachmentsContainer_edba75 {
+            div[class^='mediaAttachmentsContainer_' i] {
                display: grid !important;
                justify-items: center !important;
                grid-auto-flow: row !important;
             }
 
-            .mediaAttachmentsContainer_edba75 li[role="listitem"] {
+            div[class^='mediaAttachmentsContainer_' i] li[role="listitem"] {
                background-color: rgba(0,0,0, .4) !important;
             }
 
@@ -327,62 +300,67 @@ module.exports = class ChatDesign {
                text-align: start !important;
             }
 
-            article.markup_a7e664 + article.markup_a7e664 {
+            articlediv[class^="markup_" i] + articlediv[class^="markup_" i] {
                margin-top: 1rem !important;
             }
 
-            article.embedWrapper_c143d9 {
+            article[class^='embedWrapper_' i] {
                margin-top: 1rem !important;
             }
 
-            .welcomeCTASticker_ee7523 {
+            [class^='welcomeCTASticker_' i] {
                margin-top: 4px !important;
                display: flex !important;
                justify-content: center !important;
             }
 
-            span[class^='clickableSticker_'] {
+            span[class^='clickableSticker_' i] {
                width: 100% !important;
                display: flex !important;
                justify-content: center !important;
             }
 
-            .scrollableContainer__33e06:not(form .scrollableContainer__33e06) {
+            img[class^='stickerAsset_' i] {
+               border-radius: 1rem;
+               object-fit: cover;
+            }
+
+            div[class^='scrollableContainer_' i]:not(form div[class^='scrollableContainer_' i]) {
                max-width: 400px !important;
             }
 
-            .embedWrapper_c143d9 {
+            [class^='embedWrapper_' i] {
                max-width: 440px !important;
             }
 
-            .mediaAttachmentsContainer_edba75 {
-               margin-bottom: 30px !important;
+            [class^='mediaAttachmentsContainer_' i] {
+               margin-bottom: 20px !important;
             }
 
-            .mediaAttachmentsContainer_edba75 > div > div {
+            [class^='mediaAttachmentsContainer_' i] > div > div {
                margin-top: 5px !important;
                display: flex !important;
                align-items: center !important;
                justify-content: center !important;
             }
             
-            .mediaAttachmentsContainer_edba75 > div > div > div {
+            [class^='mediaAttachmentsContainer_' i] > div > div > div:not(div[class^='hoverButtonGroup_' i]) {
                width: 90% !important;
                display: flex !important;
                align-items: center !important;
                justify-content: center !important;
             }
 
-            .twoByTwoGrid__47ed7 {
+            [class^='twoByTwoGrid_' i] {
                margin-top: 1rem !important;
             }
 
-            .twoByTwoGrid__47ed7 div {
+            [class^='twoByTwoGrid_' i] div {
                display: flex !important;
                height: fit-content !important;
             }
 
-            .oneByTwoGridItem_fc18a9 {
+            [class^='oneByTwoGridItem_' i] {
                display: flex !important;
                justify-content: center !important;
                align-items: center !important;
@@ -394,106 +372,118 @@ module.exports = class ChatDesign {
                overflow-x: clip !important !important;
             }
 
-            .openFullPreviewSection-31zc2v {
+            [class^='openFullPreviewSection' i] {
                margin-right: 10px !important;
             }
 
-            .form__13a2c .attachedBars_da3c74:after, .guildSeparator_dcb3cc {
+            form[class^='form_' i] {
+               margin-top: 1rem !important;
+            }
+
+            form[class^='form_' i] [class^='attachedBars_' i]:after, [class^='guildSeparator_' i] {
                background: rgba(255, 255, 255, .2) !important;
             }
 
-            .form__13a2c .attachedBars_da3c74 {
+            form[class^='form_' i] [class^='attachedBars_' i] {
                border-radius: 10px 10px 0 0 !imporant !important;
                background-color: var(--main-textarea-color) !important;
             }
 
-            .attachedBars_da3c74, .replyBar_b64d74, .threadSuggestionBar_b633f7 {
+            form[class^='form_' i] [class^='attachedBars_' i]::placeholder {
+               font-family: inherit !important;
+            }
+
+            [class^='attachedBars_' i], [class^='replyBar_' i], [class^='threadSuggestionBar_' i] {
                background: transparent !important;
             }
 
-            .attachmentName_b33bf1 {
+            [class^='attachmentName_' i] {
                margin-left: 10px !important;
             }
 
-            .formattedSize__07da1 {
+            [class^='formattedSize_' i] {
                direction: ltr !important;
             }
 
-            svg.codeIcon__14a76 {
+            svg[class^='codeIcon_' i] {
                display: none !important;
             }
 
-            .downloadButton-2PkwZg {
+            [class^='downloadButton' i] {
                padding-left: 10px !important;
             }
 
-            div[class^=wordmarkWindows] {
+            div[class^='wordmarkWindows' i] {
                display: inline-flex !important;
                flex-direction: row-reverse !important;
                padding: 0 0 0 12px !important;
             }
 
-            div[class^=wordmarkWindows]:before {
+            div[class^='wordmarkWindows' i]:before {
                content: '\\0041\\0052' !important;
             }
 
-            div[class^=wordmarkWindows]:after {
+            div[class^='wordmarkWindows' i]:after {
                content: '\\0061\\006D\\006F' !important;
             }
 
-            .group-spacing-16.messagesWrapper_ea2b0b .groupStart__56db5 {
+            #bd-modal-container {
+               display: none !important;
+            }
+
+            li[id^="chat-messages-" i][class^="messageListItem_" i] + div[role="separator"] {
+               margin-top: 3rem !important;
+               margin-bottom: 3rem !important;
+            }
+
+            .group-spacing-16.[class^='messagesWrapper_' i] [class^='groupStart_' i] {
                --group-spacing: 0 !important;
             }
 
-            .divider__8cf56 {
+            div[class^='divider_' i]:not(div[class^='overlayBackground_' i] div[class^='divider_' i]):not(div[class^="titleWrapper_" i] + div[class^='divider_' i]) {
                position: relative !important;
                display: flex !important;
                margin-top: 3rem !important;
             }
 
-            .wrapper__09ecc.:not(.groupStart__56db5) {
-               padding: var(--message-padding-top) var(--message-padding-side) !important;
+            section[role="navigation"] div[class^="children_" i]:after, section[role="navigation"] div[class^="children_" i] + div[class^="toolbar_" i] {
+               display: none;
             }
 
-            .hiddenSpoiler__57186 {
+            [class^='hiddenSpoiler_' i] {
                filter: blur(8px) !important;
             }
 
-            .spoilerWarning_d02e2d {
+            [class^='spoilerWarning_' i] {
                backdrop-filter: blur(4px) saturate(180%) !important;
             }
 
-            .iconWrapper__8560c, .wrapper__5036f {
+            div[aria-label="Play"] > [class^='iconWrapper_' i] {
                backdrop-filter: blur(4px) saturate(120%) contrast(90%) brightness(40%) !important;
                background-color: var(--message-color) !important;
             }
 
-            .cozy_f5c119 .header__39b23 {
+            [class^='cozy_' i] [class^='header__' i] {
                display: inline-grid !important;
             }
 
-            .cozy_f5c119 .timestamp_cdbd93 {
+            [class^='cozy_' i] [class^='timestamp_' i] {
                margin-left: 0 !important;
             }
 
-            .divider__8cf56[class^=isUnread] {
+            div[class^='divider_' i][class^='isUnread_' i] {
                margin: 0 0.875rem 0 70px !important;
             }
 
-            .group-spacing-16 .divider__8cf56.beforeGroup-1BvJAt {
+            .group-spacing-16 div[class^='divider_' i][class^='beforeGroup' i] {
                margin-top: 35px !important;
             }
 
-            .typing-2J1mQU {
-               margin-left: 1.5rem !important;
-               background-color: transparent !important;
-            }
-
-            removeAttachmentHoverButton__4ddb5, .embedSuppressButton_df9a75, .closeButton__8f1fd {
+            [class^='removeAttachmentHoverButton_' i], [class^='embedSuppressButton_' i], [class^='closeButton_' i] {
                position: absolute !important;
             }
 
-            removeAttachmentHoverButton__4ddb5 svg, .embedSuppressButton_df9a75 svg, .closeButton__8f1fd svg, [class^=cancelButton] {
+            [class^='removeAttachmentHoverButton_' i] svg, [class^='embedSuppressButton_' i] svg, [class^='closeButton_' i] svg, [class^=cancelButton] {
                width: 13px !important;
                height: 13px !important;
                margin-right: 1px !important;
@@ -504,52 +494,52 @@ module.exports = class ChatDesign {
                border-radius: 50% !important;
             }
 
-            .embedSuppressButton_df9a75 {
+            [class^='embedSuppressButton_' i] {
                right: -45px !important;
             }
 
-            .closeButton__8f1fd {
+            [class^='closeButton_' i] {
                right: 0 !important;
                top: 10px !important;
             }
 
-            [class*=group-spacing].messagesWrapper_ea2b0b .groupStart__56db5:not(.backgroundFlash_e5b9ad.groupStart__56db5) {
+            [class*=group-spacing].[class^='messagesWrapper_' i] [class^='groupStart_' i]:not([class^='backgroundFlash_' i][class^='groupStart_' i]) {
                margin-top: 3rem !important;
             }
 
-            .wrapperPaused-9B8znP, .wrapper-1FP9YQ {
+            [class^='wrapperPaused' i] {
                background: transparent !important;
             }
 
-            .video__4c052 {
+            [class^='video__' i] {
                margin-top: 5px !important;
             }
 
-            .videoControls__96149 {
+            [class^='videoControls_' i] {
                display: flex !important;
                flex-direction: row-reverse !important;
             }
 
-            .videoControls__96149 .volumeButtonSlider__05188 {
+            [class^='videoControls_' i] [class^='volumeButtonSlider_' i] {
                right: -1.65rem !important;
             }
 
-            .audioControls__9fbe9 {
+            [class^='audioControls_' i] {
                display: flex !important;
                flex-direction: row-reverse !important;
             }
 
-            .durationTimeWrapper_d1de6b {
+            [class^='durationTimeWrapper_' i] {
                display: flex !important;
                flex-direction: inherit !important;
             }
 
-            .audioControls__9fbe9 .volumeButtonSlider__05188 {
+            [class^='audioControls_' i] [class^='volumeButtonSlider_' i] {
                right: -1.3rem !important;
                top: -25px !important;
             }
 
-            .videoButton__1a553 {
+            [class^='videoButton_' i] {
                margin-right: 0 !important;
             }
 
@@ -584,7 +574,7 @@ module.exports = class ChatDesign {
                display: contents !important;
             }
 
-            div[aria-labelledby^='message-username-Uploader'] > .contents_f41bb2 h3 {
+            div[aria-labelledby^='message-username-Uploader'] > [class^='contents_' i] h3 {
                display: none !important;
             }
 
@@ -592,24 +582,59 @@ module.exports = class ChatDesign {
                text-align: start !important;
             }
 
-            .emojiContainer__4a804 + .emojiContainer__4a804 {
+            section[aria-label="Expression Picker"] div[class^='contentWrapper_' i], section[aria-label="Expression Picker"] div[class^='contentWrapper_' i]  div[class^='header_' i], div[id="emoji-picker-tab-panel"] > div[class^='header_' i], div[id^="popout_" i] div[class^="picker_" i][role="dialog"] {
+               background-color: rgba(31, 37, 39, .9);
+            }
+
+            section[aria-label="Expression Picker"] div[class^='contentWrapper_' i] div[role="tablist"], div[class^='slotsContainer_' i] {
+               background-color: rgb(31, 37, 39);
+            }
+
+            section[aria-label="Expression Picker"] div[class^='contentWrapper_' i] div[role="tablist"]:after {
+               background: hsla(150, 75%, 45%, 20%);
+            }
+
+            div[id="emoji-picker-tab-panel"] div[class^='header_' i] > div:first-child, section[aria-label="Expression Picker"] div[class^='contentWrapper_' i] div[class^='header_' i] > div:first-child > div:first-child, div[id^="popout_" i] div[class^="picker_" i][role="dialog"] div[class^='header_' i] > div:first-child > div:first-child {
+               background-color: hsla(150, 75%, 45%, 20%);
+            }
+
+            div[id="emoji-picker-tab-panel"] > div[class^='emojiPicker_' i], div[id="emoji-picker-tab-panel"] > div[class^='emojiPicker_' i] [class^='inspector_' i], div[id="emoji-picker-tab-panel"] > div[class^='bodyWrapper_' i] {
+               background-color: rgba(31, 37, 39, .9);
+            }
+
+            div[class^='categorySection_' i] [class^='wrapper_' i], section[aria-label="Expression Picker"] div[class^='contentWrapper_' i] div[class^='listItems_' i] [class^='wrapper_' i] {
+               background-color: transparent;
+            }
+
+            div[id="emoji-picker-tab-panel"] > div[class^='wrapper_' i],  div[id="sticker-picker-tab-panel"] > div[class^='wrapper_' i], div[id^="popout_" i] div[class^="picker_" i][role="dialog"] > div[class^='wrapper_' i] {
+               background-color: hsla(150, 75%, 45%, 20%);
+            }
+
+            div[id="emoji-picker-tab-panel"] > div[class^='wrapper_' i] > div:first-child + div {
+               background-color: rgb(31, 37, 39);
+            }
+
+            div[id="emoji-picker-tab-panel"] > div[class^='inspector_' i], section[aria-label="Expression Picker"] div[class^='contentWrapper_' i] div[class^='inspector_' i] {
+               background-color: rgba(31, 37, 39, .9);
+               
+            }
+
+            div[class^='categorySection_' i] button[class*='emojiItemSelected_' i], div[class*='stickerInspected_' i] div[class*='inspectedIndicator_' i] {
+               background-color: hsla(150, 75%, 45%, 30%);
+            }
+
+            button[data-name="full_moon_with_face"] > div[class^='emojiSpriteImage_' i] {
+               background-image: none !important;
+               background-position: center !important;
+               background-size: cover !important;
+            }
+
+            [class^='emojiContainer_' i] + [class^='emojiContainer_' i] {
                margin-right: 0.5px !important;
-            }
-
-            .wrapper__09ecc.mentioned__58017 .messageContent__21e69:not(.repliedTextContent__75526) {
-               padding: 10px 20px 10px 20px !important;
-            }
-
-            .wrapper-1HIH0j {
-               margin-top: 1rem !important !important;
             }
 
             li[class^='messageListItem_'] {
                width: fit-content;
-            }
-
-            .container-3Sqbyb {
-               margin-top: 1rem !important;
             }
 
             img.emoji {
@@ -617,18 +642,22 @@ module.exports = class ChatDesign {
                image-rendering: smooth !important;
             }
 
-            .iconContainer__8fa9c:not(.icon__46425.iconLayout__9fbb1.small_c2007e > div) {
-               right: 99%;
+            div[class^='soundButton_' i] {
+               filter: brightness(0.8);
             }
 
-            .nonMediaAttachmentsContainer_ca7b77 {
+            [class^='iconContainer_' i]:not([class^='icon_' i][class^='iconLayout_' i][class^='small_' i] > div) {
+               right: 0;
+            }
+
+            [class^='nonMediaAttachmentsContainer_' i] {
                max-width: 100% !important;
                justify-self: center !important;
                margin-top: 0.75rem !important;
                margin-bottom: -0.5rem !important;
             }
 
-            .cozy_f5c119 .repliedMessage_e2bf4a {
+            [class^='cozy_' i] [class^='repliedMessage_' i] {
                max-width: 400px !important;
             }
 
@@ -640,24 +669,24 @@ module.exports = class ChatDesign {
                direction: rtl !important;
             }
 
-            .wrapper__09ecc {
+            li[id^="chat-messages-" i][class^="messageListItem_" i] > div:first-child {
                max-width: 440px !important;
                margin-top: 1.5rem !important;
                border-radius: var(--message-radius) !important;
                background-color: rgba(255, 255, 255, 0.067) !important;
             }
 
-            .wrapper__09ecc:before, .wrapper__09ecc:after {
+            li[id^="chat-messages-" i][class^="messageListItem_" i] > div:first-child:before, li[id^="chat-messages-" i][class^="messageListItem_" i] > div:first-child:after {
                display: none !important;
                content: unset !important;
             }
 
-            .attachment__7a2d0 {
+            [class^='attachment_' i] {
                background-color: #1c1e24 !important;
                opacity: .9 !important;
             }
 
-            div[class^='messageAttachment_']:not(.oneByTwoGridItem_fc18a9 > div *):not(.oneByTwoSoloItem__42516 > div > *):not(.oneByTwoSoloItem__42516 + .oneByTwoDuoItem__43bff *) {
+            div[class^='messageAttachment_']:not([class^='oneByTwoGridItem_' i] > div *):not([class^='oneByTwoSoloItem_' i] > div > *):not([class^='oneByTwoSoloItem_' i] + [class^='oneByTwoDuoItem_' i] *) {
                direction: rtl !important;
                text-align: right !important;
                padding-top: 0 !important;
@@ -666,77 +695,78 @@ module.exports = class ChatDesign {
                position: relative !important;
             }
 
-            .imageContent__24964:not(.twoByOneGridItem__3d797 > div > .imageContent__24964:nth-last-child) {
+            div[class^='imageContent_' i]:not([class^='twoByOneGridItem_' i] > div > div[class^='imageContent_' i]:nth-last-child) {
                padding-top: 10px !important;
             }
 
-            .embedImage_e638a7 img, .embedImage_e638a7 video, .embedThumbnail__468e1 img, .embedThumbnail__468e1 video, .embedVideo__0c65b img, .embedVideo__0c65b video {
+            [class^='embedImage_' i] img, [class^='embedImage_' i] video, [class^='embedThumbnail_' i] img, [class^='embedThumbnail_' i] video, [class^='embedVideo_' i] img, [class^='embedVideo_' i] video {
                padding: 0 !important;
                border-radius: 15px !important;
             }
 
-            .imageAccessory__64ab2 {
+            [class^='imageAccessory_' i] {
                top: 3px !important;
             }
 
-            .imageContainer__04362 + .altText__6dd8b, .gifTag__9db5a {
+            div[class^="imageContainer_" i] + [class^='altText_' i], [class^='gifTag_' i] {
                display: none !important;
             }
 
-            .clickableWrapper__64072, .loadingOverlay__4d818 {
+            [class^='clickableWrapper_' i], [class^='loadingOverlay_' i] {
                display: flex !important;
                justify-content: center !important;
                align-items: center !important;
             }
 
-            .wrapperAudio__555ce {
+            [class^='wrapperAudio_' i] {
                margin-top: 1remv
                max-width: 400px !important;
                background: var(--background-primary) !important;
                background-position: top !important;
             }
 
-            .embedImage_e638a7, .embedThumbnail__468e1, .embedVideo__0c65b {
+            [class^='embedImage_' i], [class^='embedThumbnail_' i] {
                padding: 0 20px 0 20px !important;
             }
 
-            .embedMedia_b473d2 {
+            [class^='embedMedia_' i] {
                margin-top: 20px !important;
             }
 
-            .embedVideo__0c65b {
+            [class^='embedVideo_' i] {
                justify-content: center !important;
                align-content: center !important;
                align-items: center !important;
-               margin-bottom: 1rem !important;
+               margin: 0 !important;
+               padding: 0 !important;
             }
 
-            .oneByOneGridSingle__01756, .oneByOneGridSingle__01756 .lazyImg_dafbb7 {
+            [class^='oneByOneGridSingle_' i], [class^='oneByOneGridSingle_' i] [class^='lazyImg_' i] {
                max-height: unset !important;
             }
 
-            .mediaAttachmentsContainer_edba75 > div {
+            [class^='mediaAttachmentsContainer_' i] > div {
                justify-items: center !important;
             }
 
-            .mediaAttachmentsContainer_edba75, .nonMediaAttachmentsContainer_ca7b77 {
+            [class^='mediaAttachmentsContainer_' i], [class^='nonMediaAttachmentsContainer_' i] {
                align-items: center !important;
             }
 
-            .oneByOneGrid__02495 {
+            [class^='oneByOneGrid_' i] {
                margin-top: 1rem !important;
             }
 
-            .oneByOneGrid__02495+.threeByThreeGrid_d2750c, .oneByTwoGrid__44b90+.threeByThreeGrid_d2750c {
+            [class^='oneByOneGrid_' i] + [class^='threeByThreeGrid_' i], [class^='oneByTwoGrid_' i] + [class^='threeByThreeGrid_' i] {
                margin-top: 20px !important;
                margin-bottom: 2rem !important;
             }
 
-            .hideOverflow_d442b2 {
+            [class^='hideOverflow_' i] {
                overflow: visible !important;
             }
 
-            .messageAttachment_b97504 {
+            [class^='messageAttachment_' i] {
                min-width: 90px !important;
                max-width: 400px !important;
                width: fit-contentv
@@ -744,64 +774,60 @@ module.exports = class ChatDesign {
                top: -5px !important;
             }
 
-            .metadataContent__391c4 {
+            [class^='metadataContent_' i] {
                text-align: center !important;
                direction: ltr !important;
             }
 
-            .metadata__541c7 {
+            [class^='metadata_' i] {
                direction: ltr !important;
                text-align: left !important;
                margin-left: 10px !important;
             }
 
-            .filenameLinkWrapper__56a0d {
+            [class^='filenameLinkWrapper_' i] {
                direction: ltr !important;
                text-align: left !important;
                margin: 0 10px 0 10px !important;
             }
 
-            .anchor_c8ddc0 {
+            [class^='anchor_' i] {
                text-decoration: none !important;
             }
 
-            .audioMetadata_e546a8 {
+            [class^='audioMetadata_' i] {
                align-items: center !important;
                justify-content: center !important;
                flex-direction: row-reverse !important;
                padding: 12px 44px 4px !important;
             }
 
-            .audioMetadata_e546a8 .metadataSize__42428 {
+            [class^='audioMetadata_' i] [class^='metadataSize_' i] {
                direction: ltr !important;
             }
 
-            .metadataSize__42428 {
+            [class^='metadataSize_' i] {
                direction: ltr !important;
                text-align: center !important;
                margin-left: 8px !important;
             }
 
-            .nonMediaAttachment__30665.hoverButtonGroup__5b423 {
+            [class^='nonMediaAttachment_' i][class^='hoverButtonGroup_' i] {
                background-color: var(--card-button-color) !important;
             }
 
-            .hoverButtonGroup__5b423 {
+            [class^='hoverButtonGroup_' i] {
                left: 3px !important;
                right: calc(100% - 35px) !important;
                top: 41% !important !important;
                filter: drop-shadow(2px 4px 6px #292921) !important;
             }
 
-            .uUzgJ1pUOlLsN1WbgXbm a[href] {
-               max-width: 90%v
-            }
-
             a[aria-label="Play on Spotify"] {
                top: 24px !important;
             }
 
-            .container_dbadf5 {
+            li[id^="chat-messages-" i][class^="messageListItem_" i] div[class^="container_" i] {
                grid-auto-flow: unset !important;
                grid-row-gap: unset !important;
                grid-template-columns: unset !important;
@@ -810,7 +836,20 @@ module.exports = class ChatDesign {
                justify-content: center !important;
             }
 
-            .reactions_b8dc93 {
+            div[class*='pollContainer_' i], div[role=radiogroup] {
+               background-color: transparent !important;
+            }
+
+            div[class^='answerInner_' i] {
+               background-color: rgba(255, 255, 255, 0.067) !important;
+            }
+
+            span[class^='roleMention_' i], span.mention.interactive {
+               padding: 0 6px;
+               text-shadow: 0 0 1px rgba(33, 29, 44, .15);
+            }
+
+            [class^='reactions_' i] {
                position: absolute !important;
                right: 5px !important;
                bottom: -24px !important;
@@ -822,21 +861,21 @@ module.exports = class ChatDesign {
                display: none !important;
             }
 
-            .reactionMe__98f57, .reaction_fef95b.reactionMe__98f57 {
+            [class^='reactionMe_' i] {
                background: var(--brand-experiment-15a) !important;
                background-color: var(--brand-experiment-15a) !important;
                border-color: var(--brand-experiment) !important;
             }
 
-            .reaction_fef95b:not(.reactionMe__98f57) {
+            [class^='reactions_' i] [class^='reaction_' i]:not([class^='reactionMe_' i]) {
                background: rgba(237, 152, 43, 0.1) !important;
             }
 
-            .reaction_fef95b:not(.reactionMe__98f57) .reactionCount_b49901 {
+            [class^='reactions_' i] [class^='reaction_' i]:not([class^='reactionMe_' i]) [class^='reactionCount_' i] {
                color: #f4ca79 !important;
             }
 
-            .tooltip__01384 {
+            div[class^='tooltip_' i], div[class^='reactionTooltip_' i] {
                backdrop-filter: blur(16px) saturate(180%);
                background: hsl(223, 17%, 24%, 0.75) !important;
             }
@@ -845,20 +884,21 @@ module.exports = class ChatDesign {
                width: 2rem !important;
                height: 2rem !important;
                min-height: 2rem !important;
+               border-radius: 4px;
             }
 
-            .operations-3q3u6E {
-               display: none !important;
-            }
-
-            .inner__9fd0b {
+            form[class^='form_' i] div[class^='inner__' i] {
                cursor: text !important;
                overflow-x: clip !important;
                overflow-y: auto !important;
             }
 
-            .inner__9fd0b textarea:not(.form__13a2c textarea) {
+            div[class^='inner__' i] textarea:not(form[class^='form_' i] textarea) {
                height: revert !important;
+            }
+
+            [class^='justifyAuto_' i] {
+               justify-self: center !important;
             }
 
             #mySettings, #mySettings .settings {
@@ -893,6 +933,13 @@ module.exports = class ChatDesign {
          const myAvatar = `
             .myAvatar {
                right: -50px !important;
+               left: unset !important;
+            }
+         `;
+
+         const myAvatarDecoration = `
+            .myAvatarDecoration {
+               right: -53px !important;
                left: unset !important;
             }
          `;
@@ -993,6 +1040,7 @@ module.exports = class ChatDesign {
          style.innerHTML =
          myMessage + ' '
          + myAvatar + ' '
+         + myAvatarDecoration + ' '
          + myWrapper + ' '
          + myUpload + ' '
          + customFileAttach + ' '
@@ -1029,7 +1077,7 @@ module.exports = class ChatDesign {
                   var text = textContainer.value;
                } 
                else {
-                  var textContainer = message.querySelector('.markup_a7e664');
+                  var textContainer = message.querySelector('div[class^="markup_" i]');
                   var text = textContainer.textContent;
                }
 
@@ -1082,8 +1130,8 @@ module.exports = class ChatDesign {
          function editModeProcess(inputContainer) {
             const messageSection = inputContainer.parentElement.parentElement;
 
-            const media = messageSection.querySelector('.container_dbadf5');
-            const caption = messageSection.querySelector('.contents_f41bb2');
+            const media = messageSection.querySelector('div[class^="container_" i]');
+            const caption = messageSection.querySelector('div[class^="contents_" i]');
             const inputContainerHeight = inputContainer.clientHeight;
             media.setAttribute('style', 'padding-bottom: ' + (inputContainerHeight - 20) + 'px');
 
@@ -1118,19 +1166,19 @@ module.exports = class ChatDesign {
             const myAvatarUrl = mySettings.myAvatarUrl;
             
             setInterval(function () { //set the code to repeat without pausing discord itself
-               const fileAttachMessages = [...document.querySelectorAll('.container_dbadf5 a.downloadWrapper-1Cy2Fi')];
-               const spotifyMessages  = [...document.querySelectorAll('.container_dbadf5 .embedSpotify_d58077')];
-               const embedMessages   = [...document.querySelectorAll('.container_dbadf5 article.embedWrapper_c143d9')];
-               const myMessages  = [...document.querySelectorAll('.contents_f41bb2 > img[src="' + myAvatarUrl + '"]')];
+               const fileAttachMessages = [...document.querySelectorAll('div[class^="container_" i] a[class^="downloadWrapper" i]')];
+               const spotifyMessages  = [...document.querySelectorAll('div[class^="container_" i] [class^="embedSpotify_" i]')];
+               const embedMessages   = [...document.querySelectorAll('div[class^="container_" i] article[class^="embedWrapper_" i]')];
+               const myMessages  = [...document.querySelectorAll('div[class^="contents_" i] > img[src="' + myAvatarUrl + '"]')];
                const myNextMessagesIds = [];
-               const editModeTexts  = [...document.querySelectorAll('.inner__9fd0b')];
-               const allMessagesTexts = [...document.querySelectorAll('.contents_f41bb2')];
-               const backgroundFlashedMessages  = [...document.querySelectorAll('.backgroundFlash_e5b9ad')];
-               const imageAttachMessages = [...document.querySelectorAll('.wrapper__09ecc .imageWrapper_fd6587')];
-               const editedMessages       = [...document.querySelectorAll('.markup_a7e664 time[aria-label^="Edited "]')];
-               const spoilerAttachMessages = [...document.querySelectorAll('.wrapper__09ecc .spoiler_b634f3 .imageWrapper_fd6587')];
-               const full_moon_with_faces = [...document.querySelectorAll('img[src="/assets/11b25a40798c2ab06f47.svg"], img[alt=":full_moon_with_face:"], button[data-name="full_moon_with_face"]')];
-               // const embedAttachmentsMessages = [...document.querySelectorAll('.markup_a7e664 a[href^="https://cdn.discordapp.com/attachments/"], .markup_a7e664 a[href^="https://media.discordapp.net/attachments/"]')];            
+               const editModeTexts  = [...document.querySelectorAll('main[class^="chatContent_" i] div[class^="inner__" i]')];
+               const allMessagesTexts = [...document.querySelectorAll('div[class^="contents_" i]')];
+               const backgroundFlashedMessages  = [...document.querySelectorAll('[class^="backgroundFlash_" i]')];
+               const imageAttachMessages = [...document.querySelectorAll('li[id^="chat-messages-" i][class^="messageListItem_" i] > div:first-child [class^="imageWrapper_" i]')];
+               const editedMessages       = [...document.querySelectorAll('div[class^="markup_" i] time[aria-label^="Edited "]')];
+               const spoilerAttachMessages = [...document.querySelectorAll('li[id^="chat-messages-" i][class^="messageListItem_" i] > div:first-child [class^="spoiler_" i] [class^="imageWrapper_" i]')];
+               const full_moon_with_faces = [...document.querySelectorAll('img[src="/assets/c6522a789d34f4572cc6.svg"], img[alt=":full_moon_with_face:"], img[data-name=":full_moon_with_face:"], button[data-name="full_moon_with_face"]')];
+               // const embedAttachmentsMessages = [...document.querySelectorAll('div[class^="markup_" i] a[href^="https://cdn.discordapp.com/attachments/"], div[class^="markup_" i] a[href^="https://media.discordapp.net/attachments/"]')];            
 
                //================================= imageAttachment ================================
       
@@ -1140,7 +1188,7 @@ module.exports = class ChatDesign {
                   var embedContainer = message.parentElement.parentElement.parentElement;
 
                   // images
-                  if (imageContainer.classList.contains('container_dbadf5')) {
+                  if (/container_/.test(imageContainer.className)) {
                      // check if it is not solo
                      if (/two|three|oneByT/.test(videoContainer.className)) {
                         imageContainer.classList.add('customContainer');
@@ -1148,21 +1196,28 @@ module.exports = class ChatDesign {
                      }
 
                      if (!imageContainer.classList.contains('customContainer') && message.querySelector('a').href.startsWith('https://cdn.discordapp.com')) {
-                        var captionContainer = imageContainer.parentElement.querySelector('.contents_f41bb2');
-                        if (imageContainer.classList.contains('container_dbadf5') && !imageContainer.classList.contains('customContainer')) {
+                        var captionContainer = imageContainer.parentElement.querySelector('div[class^="contents_" i]');
+                        if (/container_/.test(imageContainer.className) && !imageContainer.classList.contains('customContainer')) {
                            imageContainer.classList.add('customContainer');
       
-                           const caption = captionContainer.querySelector('.markup_a7e664');
+                           const caption = captionContainer.querySelector('div[class^="markup_" i]');
                            try {
                               const captionHeight = caption.offsetHeight;
                               if (captionHeight === 0) {
                                  return;
                               }
 
+                              const captionEmbed = imageContainer.querySelector('article');
+                              var captionEmbedHeight = 0;
+                              if (captionEmbed !== null) {
+                                 captionEmbedHeight = captionEmbed.offsetHeight + 12;
+                              }
+
                               const image = imageContainer.querySelector('div');
                               const imageHeight = imageContainer.offsetHeight;
-                              image.setAttribute('style', 'transform: translateY(-' + (captionHeight + 5) + 'px)');
-                              caption.setAttribute('style', 'transform: translateY(' + (imageHeight - 18) + 'px)');
+
+                              image.setAttribute('style', 'transform: translateY(-' + (captionHeight - 10) + 'px)');
+                              caption.setAttribute('style', 'transform: translateY(' + (imageHeight - captionEmbedHeight - 16) + 'px)');
                               caption.style.top = '10px';
                               caption.style.textAlign = 'center';
                            } 
@@ -1179,9 +1234,9 @@ module.exports = class ChatDesign {
                   // videos or embeds
                   else {
                      // videos
-                     if (videoContainer.classList.contains('container_dbadf5') && !videoContainer.classList.contains('customContainer')) {
-                        var captionContainer = videoContainer.parentElement.querySelector('.contents_f41bb2');
-                        const caption = captionContainer.querySelector('.markup_a7e664');
+                     if (/container_/.test(videoContainer.className) && !videoContainer.classList.contains('customContainer')) {
+                        var captionContainer = videoContainer.parentElement.querySelector('div[class^="contents_" i]');
+                        const caption = captionContainer.querySelector('div[class^="markup_" i]');
                         const cover = videoContainer.querySelector('div');
                         
                         const captionHeight = caption.offsetHeight;
@@ -1192,16 +1247,16 @@ module.exports = class ChatDesign {
                         if (cover !== null && videoContainer.querySelector('video') !== null) {
                            videoContainer.classList.add('customContainer');
                            const coverHeight = videoContainer.querySelector('video').clientHeight;
-                           cover.setAttribute('style', 'transform: translateY(-' + (captionHeight - 10) + 'px)');
-                           caption.setAttribute('style', 'transform: translateY(' + (coverHeight + 46) + 'px)');
+                           cover.setAttribute('style', 'transform: translateY(-' + (captionHeight + 7) + 'px)');
+                           caption.setAttribute('style', 'transform: translateY(' + (coverHeight - 30) + 'px)');
                            caption.style.textAlign = 'center';
                            return;
                         }
                      }
                      // embeds
-                     else if (embedContainer.classList.contains('container_dbadf5') && !embedContainer.classList.contains('customContainer')) {
-                           var captionContainer = embedContainer.parentElement.querySelector('.contents_f41bb2');
-                           const caption = captionContainer.querySelector('.markup_a7e664');
+                     else if (/container_/.test(embedContainer.className) && !embedContainer.classList.contains('customContainer')) {
+                           var captionContainer = embedContainer.parentElement.querySelector('div[class^="contents_" i]');
+                           const caption = captionContainer.querySelector('article[class^="markup_" i]');
                            const cover = embedContainer.querySelector('div');
 
                            const captionHeight = caption.offsetHeight;
@@ -1212,8 +1267,8 @@ module.exports = class ChatDesign {
                            if (cover !== null && embedContainer.querySelector('video') !== null) {
                               embedContainer.classList.add('customContainer');
                               const coverHeight = embedContainer.querySelector('video').clientHeight;
-                              cover.setAttribute('style', 'transform: translateY(-' + (captionHeight - 10) + 'px)');
-                              caption.setAttribute('style', 'transform: translateY(' + (coverHeight + 40) + 'px)');
+                              cover.setAttribute('style', 'transform: translateY(-' + (captionHeight - 16) + 'px)');
+                              caption.setAttribute('style', 'transform: translateY(' + (coverHeight + 10) + 'px)');
                               caption.style.textAlign = 'center';
                            }
                      }
@@ -1223,12 +1278,12 @@ module.exports = class ChatDesign {
                //================================= spoilAttachment ================================
 
                spoilerAttachMessages.forEach(message => {
-                  var imageContainer = message.closest('.container_dbadf5');
+                  var imageContainer = message.closest('div[class^="container_" i]');
                   if (imageContainer !== null && !imageContainer.classList.contains('customContainer')) {
                      imageContainer.classList.add('customContainer');
-                     var captionContainer = imageContainer.parentElement.querySelector('.contents_f41bb2');
+                     var captionContainer = imageContainer.parentElement.querySelector('div[class^="contents_" i]');
 
-                     const caption = captionContainer.querySelector('.markup_a7e664');
+                     const caption = captionContainer.querySelector('div[class^="markup_" i]');
                      const captionHeight = caption.offsetHeight;
                      if (captionHeight === 0) {
                         return;
@@ -1270,8 +1325,8 @@ module.exports = class ChatDesign {
                      reply.classList.add('customReply');
                      const message = reply.firstElementChild;
 
-                     if (message.querySelector('.contents_f41bb2 > img') !== null) {
-                        if (message.querySelector('.contents_f41bb2 > img').src === myAvatarUrl) {
+                     if (message.querySelector('div[class^="contents_" i] > img') !== null) {
+                        if (message.querySelector('div[class^="contents_" i] > img').src === myAvatarUrl) {
                            message.classList.add('myMessage');
                         }
                         return;
@@ -1291,9 +1346,9 @@ module.exports = class ChatDesign {
                      try {
                         var previousMessage = message.previousElementSibling;
 
-                        if (previousMessage.querySelector('.contents_f41bb2 > img') !== null) {
+                        if (previousMessage.querySelector('div[class^="contents_" i] > img') !== null) {
                               end = true;
-                              if (previousMessage.querySelector('.contents_f41bb2 > img').src === myAvatarUrl) {
+                              if (previousMessage.querySelector('div[class^="contents_" i] > img').src === myAvatarUrl) {
                                  return true;
                               } else {
                                  return false;
@@ -1331,7 +1386,7 @@ module.exports = class ChatDesign {
                function nextMessageExist(nextMessage) {
                   if (nextMessage !== undefined
                      && nextMessage.tagName === 'LI'
-                     && document.getElementById(nextMessage.getAttribute('id')).querySelector('.contents_f41bb2 > img') === null
+                     && document.getElementById(nextMessage.getAttribute('id')).querySelector('div[class^="contents_" i] > img') === null
                      && document.getElementById(nextMessage.getAttribute('id')).textContent.startsWith('[')) {
                         return true;
                      }
@@ -1343,8 +1398,13 @@ module.exports = class ChatDesign {
                   var message = document.getElementById(messageId);
                   if (addAvatarClass && message !== null) {
                      try {
-                        if (message.querySelector('.contents_f41bb2 > img') !== null) {
-                           message.querySelector('.contents_f41bb2 > img').classList.add('myAvatar');
+                        var myAvatarImg = message.querySelector('div[class^="contents_" i] > img');
+                        if (myAvatarImg !== null) {
+                           myAvatarImg.classList.add('myAvatar');
+                           var myAvatarDecorationImg = myAvatarImg.nextElementSibling;
+                           if (myAvatarDecorationImg.nodeName === 'IMG' && (/avatarDecoration_/.test(myAvatarDecorationImg.className))) {
+                              myAvatarDecorationImg.classList.add('myAvatarDecoration');
+                           }
                         }
                      } finally {
                         //can't find avatar -> continue...
@@ -1352,7 +1412,7 @@ module.exports = class ChatDesign {
                   }
                   try {
                      message.classList.add('myMessage');
-                     message.querySelector('.wrapper__09ecc').classList.add('myWrapper');
+                     message.querySelector('div:first-child').classList.add('myWrapper');
                   } finally {
                      return;
                   }
@@ -1384,8 +1444,8 @@ module.exports = class ChatDesign {
                      if (!editModeStyleInjected) {
                         const editModeText = editModeTexts[0];
                         const inputContainer = editModeText.parentElement.parentElement.parentElement;
-                        const media = inputContainer.parentElement.parentElement.querySelector('.container_dbadf5');
-                        const mediaHeight = media.querySelector('.imageWrapper_fd6587 a').clientHeight;
+                        const media = inputContainer.parentElement.parentElement.querySelector('div[class^="container_" i]');
+                        const mediaHeight = media.querySelector('[class^="imageWrapper_" i] a').clientHeight;
                         inputContainer.style.cssText = `
                            max-width: 90%; 
                            margin-left: 20px !important;
@@ -1404,7 +1464,7 @@ module.exports = class ChatDesign {
                      if (!editModeStyleInjected) {
                         const editModeText = editModeTexts[0];
                         const inputContainer = editModeText.parentElement.parentElement.parentElement;
-                        if(inputContainer.className === "form__13a2c") {
+                        if(/form_/.test(inputContainer.className)) {
                            return;
                         }
                         inputContainer.style.cssText = `
@@ -1446,7 +1506,7 @@ module.exports = class ChatDesign {
                               background-position: center !important;
                               background-size: cover !important;
                            `;
-                           emoji.querySelector('.emojiSpriteImage__6363e').style.cssText = `
+                           emoji.querySelector('div[class^="emojiSpriteImage_" i]').style.cssText = `
                               background-image: none !important;
                               background-position: center !important;
                               background-size: cover !important;
