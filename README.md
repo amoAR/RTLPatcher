@@ -9,12 +9,10 @@ In this way, it's much easier to recognize your messages from others... Just lik
 - Aligns contents of the all messages automatically.
 
 ## Install
-1. Download `RTLPatcher.plugin.js` and save it to the plugins folder of BetterDiscord.
-2. Add the following line into your `.theme.css` file or Custom CSS on settings.
+1. Download `RTLPatcher.plugin.js` and save it in the plugins folder of [BetterDiscord](https://betterdiscord.app/).
+2. Do the same thing now for `RTLPatcher.theme.css` and save it in the themes folder.
 
-```
-@import url('https://raw.githubusercontent.com/amoAR/RTLPatcher/refs/heads/main/Theme.css');
-```
+<br/>
 
 ## Screenshot
 
