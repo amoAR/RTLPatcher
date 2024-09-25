@@ -1,7 +1,7 @@
 /**
  * @name RTLPatcher
  * @description Makes Discord chat design more like normal!
- * @version 0.6.0
+ * @version 0.6.1
  * @author amoAR
  * @authorId 568288962943385612
  * @website https://github.com/amoAR/RTLPatcher
@@ -70,6 +70,7 @@ module.exports = class RTLPatcher {
 
     //mutation recoreds vars
     this.firstPatch = true;
+    this.isObserved = false;
   }
 
   start() {
@@ -96,22 +97,31 @@ module.exports = class RTLPatcher {
     if (this.firstPatch) {
       this.firstPatch = false;
       this.ChatLoadHandler();
+      this.AlignHandler();
+    }
+
+    //not observed due to cache
+    if (!this.isObserved) {
+      this.ChatLoadHandler();
+      this.AlignHandler();
     }
   }
 
   observer(chnages) {
     if (chnages.type == "childList" && chnages.addedNodes.length == 1) {
       if (chnages.addedNodes[0].className == MessagesClass) {
+        this.isObserved = true;
         //handle messages
         this.ChatLoadHandler();
         //align contents of messages
         this.AlignHandler();
-        //remove temp style for sent messeage
-        if (Boolean(document.getElementById(this.namespace + "-NextMessage"))) {
-          BdApi.DOM.removeStyle(this.namespace + "-NextMessage");
-        }
+        //remove temp sent messeage style
+        BdApi.DOM.removeStyle(this.namespace + "-NextMessage");
+
+        return;
       }
     }
+    this.isObserved = false;
   }
 
   stop() {
@@ -230,9 +240,6 @@ module.exports = class RTLPatcher {
           msg.querySelector("[class^=avatarDecoration]").classList.add("myAvatarDecoration");
       } catch { }
     });
-
-    //align messages contents
-    this.AlignHandler();
   }
 
   AlignHandler() {
@@ -247,31 +254,37 @@ module.exports = class RTLPatcher {
     //set align from left to auto
     messagesDiv.forEach(msg => {
       try {
-        const contentContainer = msg.querySelector(`.${MessageContentClass}`);
+        const contentContainer = msg.querySelector(`.${MessageContentClass}:not([class*=replied])`);
+        const contentTexts = contentContainer?.textContent;
 
         //enable auto text direction
         contentContainer.dir = "auto";
 
-        try {
-          //center content container
-          if (contentContainer.textContent.split(" ").length < 10) {
-            contentContainer.style.textAlign = "center";
+        //choose the best direction for alignment
+        if (Boolean(contentTexts)) {
+          const emojiPattern = /<a?:.+?:\d{18}>|\p{Extended_Pictographic}/gu, urlPattern = /(https?:\/\/[^\s]+)/g;
+          const contentWords = contentTexts.trim().replace(emojiPattern, "").replace(urlPattern, "").split(" ", 4) ?? [];
+
+          //align same as direction
+          if (contentWords.length > 10) {
+            contentContainer.style.textAlign = "start";
             return;
           }
-        } catch { }
+        }
 
-        //align same as direction
-        contentContainer.style.textAlign = "start";
+        //center content container
+        contentContainer.style.textAlign = "center";
       } catch { }
     })
   }
 
   generateNextMessageCSS(currentLastMsgId) {
-    //set style for message that will be created soon
-    //that message will be closest to the curent last one
+    //set pre-style for message that will be created soon
+    //it helps Low Spec users to not see message movement
+    //message will be the last one among others certainly
     const sentMsg = `#${currentLastMsgId} ~ .${MessagesClass}:last-of-type`;
 
-    //modify global css by specifying selectors for next message
+    //modify global css by specifying selectors for sent message
     let myNextMessageStyles = this.myStyles
       .replace(".myMessage", sentMsg)
       .replace(".myWrapper", `${sentMsg} > [class^=message][class*=groupStart]`)
@@ -279,11 +292,10 @@ module.exports = class RTLPatcher {
       .replace(".myAvatarDecoration", `${sentMsg} > [class^=message][class*=groupStart] :not([class*=repliedMessage]) > [src]:first-of-type + img`)
 
     //inject CSS
-    // BdApi.DOM.addStyle(this.namespace + "-" + currentLastMsgId, myNextMessageStyles);
-    BdApi.DOM.addStyle(this.namespace + "-NextMessage");
+    BdApi.DOM.addStyle(this.namespace + "-NextMessage", myNextMessageStyles);
 
     //align again
-    // this.AlignHandler();
+    this.AlignHandler();
   }
 
   generateGlobalCSS() {
