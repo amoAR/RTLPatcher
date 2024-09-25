@@ -8,7 +8,7 @@ In this way, it's much easier to recognize your messages from others... Just lik
 - Moves your messages to the right side.
 - Aligns contents of the all messages automatically.
 
-## Install
+## Installation
 1. Download `RTLPatcher.plugin.js` and save it in the plugins folder of [BetterDiscord](https://betterdiscord.app/).
 2. Do the same thing now for `RTLPatcher.theme.css` and save it in the themes folder.
 
