@@ -1,13 +1,13 @@
 /**
  * @name RTLPatcher
  * @description Makes Discord chat design more like normal!
- * @version 0.5.9
+ * @version 0.6.0
  * @author amoAR
  * @authorId 568288962943385612
  * @website https://github.com/amoAR/RTLPatcher
  * @source https://github.com/amoAR/RTLPatcher/blob/main/RTLPatcher.plugin.js
  * @updateUrl https://raw.githubusercontent.com/amoAR/RTLPatcher/refs/heads/main/RTLPatcher.plugin.js
- */
+*/
 
 /*@cc_on
 @if (@_jscript)
@@ -36,7 +36,7 @@ const BD = new BdApi("RTLPatcher"),
   { getByKeys } = BD.Webpack,
   CurrentUserId = getByKeys("getCurrentUser").getCurrentUser().id,
   MessagesClass = getByKeys("messageListItem").messageListItem, MessageContentClass = getByKeys("markup").markup,
-  MessageAction = getByKeys("sendMessage");
+  MessageDelete = getByKeys("deleteMessage"), MessageSend = getByKeys("sendMessage");
 
 module.exports = class RTLPatcher {
   constructor() {
@@ -65,15 +65,11 @@ module.exports = class RTLPatcher {
       }
     `;
 
-    //array to store nextMessage styles
-    this.NextMessageStylesIds = [];
-
     //store previous/current url
     this.currentUrl = "";
 
     //mutation recoreds vars
     this.firstPatch = true;
-    this.currentMessagesCount = 0;
   }
 
   start() {
@@ -81,7 +77,7 @@ module.exports = class RTLPatcher {
     this.generateGlobalCSS();
 
     //patch sent message style
-    BD.Patcher.before(MessageAction, "sendMessage", () => {
+    BD.Patcher.before(MessageSend, "sendMessage", () => {
       this.SendMsgHandler();
     })
   }
@@ -97,8 +93,6 @@ module.exports = class RTLPatcher {
 
     //handle chat design
     //wait for observer
-    this.currentMessagesCount = 0;
-
     if (this.firstPatch) {
       this.firstPatch = false;
       this.ChatLoadHandler();
@@ -108,19 +102,13 @@ module.exports = class RTLPatcher {
   observer(chnages) {
     if (chnages.type == "childList" && chnages.addedNodes.length == 1) {
       if (chnages.addedNodes[0].className == MessagesClass) {
-        const messageCount = document.querySelector(`.${MessagesClass}`).parentElement.closest("ol").querySelectorAll("li").length;
-
-        switch (true) {
-          //first time chat load
-          case this.currentMessagesCount == 0 && messageCount > 0:
-            this.currentMessagesCount = messageCount;
-            this.ChatLoadHandler();
-            break;
-          //fetch more messages
-          case this.currentMessagesCount != 0 && messageCount - this.currentMessagesCount > 1:
-            this.currentMessagesCount = messageCount;
-            this.ChatLoadHandler();
-            break;
+        //handle messages
+        this.ChatLoadHandler();
+        //align contents of messages
+        this.AlignHandler();
+        //remove temp style for sent messeage
+        if (Boolean(document.getElementById(this.namespace + "-NextMessage"))) {
+          BdApi.DOM.removeStyle(this.namespace + "-NextMessage");
         }
       }
     }
@@ -129,13 +117,13 @@ module.exports = class RTLPatcher {
   stop() {
     //remove injected styles
     BdApi.DOM.removeStyle(this.namespace);
-
-    this.NextMessageStylesIds.forEach(style => {
-      BdApi.DOM.removeStyle(style);
-    })
+    BdApi.DOM.removeStyle(this.namespace + "-NextMessage");
 
     //unpatch all
     BD.Patcher.unpatchAll();
+
+    //toast warn
+    BdApi.UI.showToast("Restart Discord may require for changes to take effect!", { type: "warning", timeout: 5000 });
   }
 
   SendMsgHandler() {
@@ -260,15 +248,19 @@ module.exports = class RTLPatcher {
     messagesDiv.forEach(msg => {
       try {
         const contentContainer = msg.querySelector(`.${MessageContentClass}`);
+
+        //enable auto text direction
         contentContainer.dir = "auto";
 
         try {
+          //center content container
           if (contentContainer.textContent.split(" ").length < 10) {
             contentContainer.style.textAlign = "center";
             return;
           }
         } catch { }
-        
+
+        //align same as direction
         contentContainer.style.textAlign = "start";
       } catch { }
     })
@@ -277,23 +269,21 @@ module.exports = class RTLPatcher {
   generateNextMessageCSS(currentLastMsgId) {
     //set style for message that will be created soon
     //that message will be closest to the curent last one
-    const sentMsg = `#${currentLastMsgId} ~ .${MessagesClass}`;
+    const sentMsg = `#${currentLastMsgId} ~ .${MessagesClass}:last-of-type`;
 
     //modify global css by specifying selectors for next message
-    let myNextMessageStyles = this.myStyles.replace(".myMessage", sentMsg)
+    let myNextMessageStyles = this.myStyles
+      .replace(".myMessage", sentMsg)
       .replace(".myWrapper", `${sentMsg} > [class^=message][class*=groupStart]`)
       .replace(".myAvatar", `${sentMsg} > [class^=message][class*=groupStart] :not([class*=repliedMessage]) > [src]:first-of-type`)
       .replace(".myAvatarDecoration", `${sentMsg} > [class^=message][class*=groupStart] :not([class*=repliedMessage]) > [src]:first-of-type + img`)
 
     //inject CSS
-    BdApi.DOM.addStyle(this.namespace + "-" + currentLastMsgId, myNextMessageStyles);
-
-    //add style tag id that just created so we can remove on plugin stop
-    // if (Boolean(document.getElementById(this.namespace + "-" + currentLastMsgId)))
-    this.NextMessageStylesIds.push(this.namespace + "-" + currentLastMsgId);
+    // BdApi.DOM.addStyle(this.namespace + "-" + currentLastMsgId, myNextMessageStyles);
+    BdApi.DOM.addStyle(this.namespace + "-NextMessage");
 
     //align again
-    this.AlignHandler();
+    // this.AlignHandler();
   }
 
   generateGlobalCSS() {
